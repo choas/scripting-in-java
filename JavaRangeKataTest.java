@@ -4,6 +4,34 @@ import org.junit.Test;
 
 public class JavaRangeKataTest {
 
+	public class Range {
+
+		private int start;
+		private int end;
+
+		public Range(String rangeString) {
+			int p = rangeString.indexOf(',');
+			start = Integer.valueOf(rangeString.substring(1, p));
+			boolean isStartIncluded = rangeString.substring(0, 1).equals("[");
+			if (!isStartIncluded) {
+				start++;
+			}
+			end = Integer.valueOf(rangeString.substring(p + 1, rangeString.length() - 1));
+			boolean isEndIncluded = rangeString.substring(rangeString.length() - 1).equals("]");
+			if (isEndIncluded) {
+				end++;
+			}
+		}
+
+		public int getStart() {
+			return start;
+		}
+
+		public int getEnd() {
+			return end;
+		}
+	}
+
 	@Test
 	public void testIntegerRangeContains() {
 		assertTrue(contains("[2,6)", 2));
@@ -27,7 +55,17 @@ public class JavaRangeKataTest {
 		assertTrue(contains("[2,10)", "[3,5]"));
 		assertTrue(contains("[3,5]", "[3,5)"));
 	}
+	
+	@Test
+	public void testEndPoints() {
+		assertArrayEquals(new int[] { 2,3,4,5 }, allPoints("[2,6)"));
+		assertArrayEquals(new int[] { 2,3,4,5,6 }, allPoints("[2,6]"));
+		assertArrayEquals(new int[] { 3,4,5 }, allPoints("(2,6)"));
+		assertArrayEquals(new int[] { 3,4,5,6 }, allPoints("(2,6]"));
+	}
 
+	
+	
 	public boolean contains(String rangeString1, String rangeString2) {
 		for (int point : allPoints(rangeString2)) {
 			if (!contains(rangeString1, point)) {
@@ -36,26 +74,22 @@ public class JavaRangeKataTest {
 		}
 		return true;
 	}
-
+	
 	public boolean contains(String rangeString, int point) {
-		int p = rangeString.indexOf(',');
-		int start = Integer.valueOf(rangeString.substring(1, p));
-		int end = Integer.valueOf(rangeString.substring(p + 1, rangeString.length() - 1));
+		Range range = new Range(rangeString);
 
-		return (point >= start && point < end);
+		return (point >= range.getStart() && point < range.getEnd());
 	}
 
 	public int[] allPoints(String rangeString) {
-		int p = rangeString.indexOf(',');
-		int start = Integer.valueOf(rangeString.substring(1, p));
-		int end = Integer.valueOf(rangeString.substring(p + 1, rangeString.length() - 1));
+		Range range = new Range(rangeString);
 
-		int[] ps = new int[end - start];
-		for (int i = start; i < end; i++) {
-			ps[i - start] = i;
+		int[] points = new int[range.getEnd() - range.getStart()];
+		for (int i = range.getStart(); i < range.getEnd(); i++) {
+			points[i - range.getStart()] = i;
 		}
 
-		return ps;
+		return points;
 	}
 
 }
