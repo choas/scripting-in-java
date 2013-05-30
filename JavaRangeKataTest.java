@@ -64,8 +64,16 @@ public class JavaRangeKataTest {
 		assertArrayEquals(new int[] { 3,4,5,6 }, allPoints("(2,6]"));
 	}
 
+	@Test
+	public void testOverlapsRange() {
+		assertFalse(overlaps("[2,5)", "[7,10)"));
+		assertTrue(overlaps("[2,10)", "[3,5)"));
+		assertTrue(overlaps("[3,5)", "[3,5)"));
+		assertTrue(overlaps("[2,5)", "[3,10)"));
+		assertTrue(overlaps("[3,5)", "[2,10)"));
+	}
 	
-	
+
 	public boolean contains(String rangeString1, String rangeString2) {
 		for (int point : allPoints(rangeString2)) {
 			if (!contains(rangeString1, point)) {
@@ -77,7 +85,6 @@ public class JavaRangeKataTest {
 	
 	public boolean contains(String rangeString, int point) {
 		Range range = new Range(rangeString);
-
 		return (point >= range.getStart() && point < range.getEnd());
 	}
 
@@ -92,4 +99,12 @@ public class JavaRangeKataTest {
 		return points;
 	}
 
+	public boolean overlaps(String rangeString1, String rangeString2) {
+		for (int point : allPoints(rangeString2)) {
+			if (contains(rangeString1, point)) {
+				return true;
+			}
+		}
+		return false;
+	}
 }
