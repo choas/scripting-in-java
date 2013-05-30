@@ -1,3 +1,4 @@
+package kata.range.java;
 import static org.junit.Assert.*;
 
 import org.junit.Test;
