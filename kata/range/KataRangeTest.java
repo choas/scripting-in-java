@@ -11,14 +11,14 @@ import kata.range.javascript.JavascriptRange;
 import org.junit.Before;
 import org.junit.Test;
 
-public class JavaRangeKataTest {
+public class KataRangeTest {
 	
 	private static Range range;
 
 	@Before
 	public void init() throws FileNotFoundException, ScriptException {
 		range = new JavaRange();
-//		range = new JavascriptRange();
+		range = new JavascriptRange();
 	}
 
 	@Test
