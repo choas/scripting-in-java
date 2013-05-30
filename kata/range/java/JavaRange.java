@@ -1,5 +1,7 @@
 package kata.range.java;
 
+import kata.range.Range;
+
 public class JavaRange implements Range {
 
 	private int start;
@@ -26,7 +28,7 @@ public class JavaRange implements Range {
 	}
 
 	@Override
-	public boolean contains(String rangeString1, String rangeString2) {
+	public boolean containsRange(String rangeString1, String rangeString2) {
 		for (int point : allPoints(rangeString2)) {
 			if (!contains(rangeString1, point)) {
 				return false;
