@@ -5,6 +5,7 @@ import java.io.FileNotFoundException;
 
 import javax.script.ScriptException;
 
+import kata.range.groovy.GroovyRange;
 import kata.range.java.JavaRange;
 import kata.range.javascript.JavascriptRange;
 
@@ -18,7 +19,12 @@ public class KataRangeTest {
 	@Before
 	public void init() throws FileNotFoundException, ScriptException {
 		range = new JavaRange();
-		range = new JavascriptRange();
+//		range = new JavascriptRange();
+//		range = new GroovyRange();
+		range = new ScriptRange("javascript", new String[] {"underscore.js", "range.js"});
+		range = new ScriptRange("groovy", new String[] {"range.groovy"});
+		range = new ScriptRange("Clojure", new String[] {"range.clojure"});
+		
 	}
 
 	@Test

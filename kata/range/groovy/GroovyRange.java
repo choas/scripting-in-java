@@ -1,4 +1,4 @@
-package kata.range.javascript;
+package kata.range.groovy;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
@@ -17,33 +17,21 @@ import javax.script.ScriptException;
 
 import kata.range.Range;
 
-public class JavascriptRange implements Range {
+public class GroovyRange implements Range {
 
-
-	private static final String UNDERSCORE_JS = "src/kata/range/javascript/underscore.js"; //"https://raw.github.com/documentcloud/underscore/master/underscore.js";
-	private static final String SCRIPT_JS = "src/kata/range/javascript/range.js";
+	private static final String SCRIPT_GROOVY = "src/kata/range/groovy/range.groovy";
 	private ScriptEngineManager manager;
 	private ScriptEngine engine;
 	private Invocable inv;
 
-	public JavascriptRange() throws ScriptException, FileNotFoundException {
+	public GroovyRange() throws ScriptException, FileNotFoundException {
 		manager = new ScriptEngineManager();
-		engine = manager.getEngineByName("JavaScript");		
+		engine = manager.getEngineByName("groovy");		
 		assertNotNull(engine);
 		inv = (Invocable) engine;
-//		try {
-//			URL url = new URL(UNDERSCORE_JS);
-//			BufferedReader in;
-//			in = new BufferedReader(new InputStreamReader(url.openStream()));
-//			engine.eval(in);
-//		} catch (Exception e) {
-//			e.printStackTrace();
-//		}
-		engine.eval(new java.io.FileReader(UNDERSCORE_JS));
-		engine.eval(new java.io.FileReader(SCRIPT_JS));
+		engine.eval(new java.io.FileReader(SCRIPT_GROOVY));
 	}
-
-
+	
 	@Override
 	public boolean contains(String rangeString, int point) throws ScriptException, NoSuchMethodException {
 		return (Boolean)inv.invokeFunction("contains", rangeString, point);
