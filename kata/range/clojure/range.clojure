@@ -1,1 +1,28 @@
-(defn contains [range point] true)
+(use '[clojure.string :only (split)])
+
+(defn start-end [range]
+	(split (subs range 1 (.length range)) #","))
+
+(defn start [range]
+	(let [start (read-string (first (start-end range)))]
+		(if (= (first range) \[) start (inc start))))
+
+(defn end [range]
+	(let [end (read-string (second (start-end range)))]
+		(if (= (last range) \]) (inc end) end)))
+
+(defn allPoints [range]
+	(let [start (start range)
+		  end (end range)
+		  points (make-array Integer/TYPE (- end start))]
+		(int-array (map + points (iterate inc start)))))
+
+(defn contains [range point] 
+	(true? (some #(= point %) (allPoints range))))
+
+(defn containsRange [range1 range2]
+	;(reduce #(and %1 %2) true (map #(contains range1 %) (allPoints range2)))
+	(every? true? (map #(contains range1 %) (allPoints range2))))
+
+(defn overlaps [range1 range2]
+    (true? (some true? (map #(contains range1 %) (allPoints range2)))))
