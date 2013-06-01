@@ -1,0 +1,111 @@
+
+
+
+
+println(STR) :- bsf_static('java.lang.System.out', OUT), bsf_invoke(_, OUT, 'println', [STR]).
+
+
+mother_child(trude, sally).
+ 
+father_child(tom, sally).
+father_child(tom, erica).
+father_child(mike, tom).
+ 
+sibling(X, Y)      :- parent_child(Z, X), parent_child(Z, Y).
+ 
+parent_child(X, Y) :- father_child(X, Y).
+parent_child(X, Y) :- mother_child(X, Y).
+
+
+
+queens(N,Qs) :-	range(1,N,Ns), queens(Ns,[],Qs).
+
+queens(UnplacedQs, SafeQs, Qs) :-
+	selectq(Q, UnplacedQs, UnplacedQs1),
+	\+ attack(Q,SafeQs),
+	queens(UnplacedQs1,[Q|SafeQs],Qs).
+queens([],Qs,Qs).
+
+attack(X,Xs) :- attack(X, 1, Xs).
+
+attack(X,N,[Y|_]) :- X is Y+N ; X is Y-N.
+attack(X,N,[_|Ys]) :- N1 is N+1, attack(X,N1,Ys).
+
+range(M,N,[M|Ns]) :- M < N, M1 is M+1, range(M1,N,Ns).
+range(N,N,[N]).
+
+selectq(X,[X|Xs],Xs).  
+selectq(X,[Y|Ys],[Y|Zs]) :- selectq(X,Ys,Zs). 
+
+
+%(var(B), write('enter board size:'), read(B) ; true), ! , queens(B,X).
+
+queens(4,P).
+
+
+
+fluss :- start_fl( Start), goal(Path),
+%, solve( Start, Path), 
+%         nl, write_list( Path), backtrack.
+         nl, println( Start).
+         
+start_fl( f( bauer( L), schaf( L), ziege( L), heu( L))) :- L = ufer1.
+goal( f( bauer( R), schaf( R), ziege( R), heu( R))) :- R = ufer2.
+
+move( f( bauer( B),  schaf( S),  ziege( Z),  heu( H)),
+      f( bauer( B1), schaf( S1), ziege( Z1), heu( H1)),
+      fahrt( von( B), nach( B1), mit( P))) :-
+     ueber( B, B1),
+     ( P = schaf,  S = B, S1 = B1, Z1 = Z,  H1 = H  ;
+       P = ziege,  Z = B, S1 = S,  Z1 = B1, H1 = H  ;
+       P = heu  ,  H = B, S1 = S,  Z1 = Z,  H1 = B1 ;
+       P = nichts,        S1 = S,  Z1 = Z,  H1 = H ),
+     sicher( bauer( B1), schaf( S1), ziege( Z1), heu( H1)).
+
+ueber( ufer1, ufer2).
+ueber( ufer2, ufer1).
+
+sicher( bauer( B), schaf( S), ziege( Z), heu( B)).
+sicher( bauer( _), schaf( B), ziege( B), heu( H)) :- ueber( B, H).
+
+
+
+
+
+% http://de.wikipedia.org/wiki/Prolog_(Programmiersprache)#Einsteins_R.C3.A4tsel
+
+erstes(E,[E|_]).
+mittleres(M,[_,_,M,_,_]).
+ 
+links(A,B,[A,B|_]).
+links(A,B,[_|R]) :- links(A,B,R).
+ 
+neben(A,B,L) :- links(A,B,L);links(B,A,L).
+    
+run :-
+        X = [_,_,_,_,_],                                
+        member([rot,brite,_,_,_],X),                    
+        member([_,schwede,_,_,hund],X),                 
+        member([_,daene,tee,_,_],X),                    
+        links([gruen,_,_,_,_],[weiss,_,_,_,_],X),       
+        member([gruen,_,kaffee,_,_],X),                 
+        member([_,_,_,pallmall,vogel],X),               
+        mittleres([_,_,milch,_,_],X),                   
+        member([gelb,_,_,dunhill,_],X),                 
+        erstes([_,norweger,_,_,_],X),                   
+        neben([_,_,_,marlboro,_],[_,_,_,_,katze],X),    
+        neben([_,_,_,_,pferd],[_,_,_,dunhill,_],X),     
+        member([_,_,bier,winfield,_],X),                
+        neben([_,norweger,_,_,_],[blau,_,_,_,_],X),     
+        member([_,deutsche,_,rothmans,_],X),            
+        neben([_,_,_,marlboro,_],[_,_,wasser,_,_],X),   
+        member([_,N,_,_,fisch],X),                      
+        write(X),nl,                                    
+        write('Der '),write(N),write(' hat einen Fisch als Haustier.'),nl. 
+
+member(X,L) :- 
+   L = [H|T], % die Liste L besteht aus einem Head und einem Tail
+   (  
+      X = H ; % wenn das Element X gleich dem Head ist, gib 'true' zurück, Oder
+      member(X,T) % prüfe ob das Element X in der Tail-Liste enthalten ist.
+   ).   
