@@ -24,7 +24,7 @@ public class KataRangeTest {
 		range = new ScriptRange("javascript", new String[] {"underscore.js", "range.js"});
 		range = new ScriptRange("groovy", new String[] {"range.groovy"});
 		range = new ScriptRange("Clojure", new String[] {"range.clojure"});
-		
+		range = new ScriptRange("jaskell", new String[] {"range.hs"});
 	}
 
 	@Test
