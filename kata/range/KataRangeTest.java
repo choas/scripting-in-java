@@ -2,22 +2,26 @@ package kata.range;
 import static org.junit.Assert.*;
 
 import java.io.FileNotFoundException;
+import java.io.IOException;
 
 import javax.script.ScriptException;
 
 import kata.range.groovy.GroovyRange;
 import kata.range.java.JavaRange;
 import kata.range.javascript.JavascriptRange;
+import kata.range.sleep.SleepRange;
 
 import org.junit.Before;
 import org.junit.Test;
+
+import sleep.error.YourCodeSucksException;
 
 public class KataRangeTest {
 	
 	private static Range range;
 
 	@Before
-	public void init() throws FileNotFoundException, ScriptException {
+	public void init() throws ScriptException, YourCodeSucksException, IOException {
 		range = new JavaRange();
 //		range = new JavascriptRange();
 //		range = new GroovyRange();
@@ -25,6 +29,7 @@ public class KataRangeTest {
 		range = new ScriptRange("groovy", new String[] {"range.groovy"});
 		range = new ScriptRange("Clojure", new String[] {"range.clojure"});
 		range = new ScriptRange("jaskell", new String[] {"range.hs"});
+		range = new SleepRange();
 	}
 
 	@Test
