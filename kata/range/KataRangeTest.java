@@ -31,7 +31,8 @@ public class KataRangeTest {
 //		range = new JaskellRange("jaskell", new String[] {"range.hs"});
 //		range = new SleepRange("sleep", new String[] {"range.pl"});
 //		range = new AbclRange("ABCL", new String[] {"range.lisp"});
-		range = new ScriptRange("jruby", new String[] {"range.rb"});
+//		range = new ScriptRange("jruby", new String[] {"range.rb"});
+		range = new ScriptRange("jython", new String[] {"range.py"});
 	}
 
 	@Test
