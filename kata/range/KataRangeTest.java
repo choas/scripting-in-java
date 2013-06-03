@@ -24,13 +24,14 @@ public class KataRangeTest {
 
 	@Before
 	public void init() throws ScriptException, YourCodeSucksException, IOException {
-		range = new JavaRange();
-		range = new ScriptRange("javascript", new String[] {"underscore.js", "range.js"});
-		range = new ScriptRange("groovy", new String[] {"range.groovy"});
-		range = new ScriptRange("Clojure", new String[] {"range.clojure"});
-		range = new JaskellRange("jaskell", new String[] {"range.hs"});
-		range = new SleepRange("sleep", new String[] {"range.pl"});
-		range = new AbclRange("ABCL", new String[] {"range.lisp"});
+//		range = new JavaRange();
+//		range = new ScriptRange("javascript", new String[] {"underscore.js", "range.js"});
+//		range = new ScriptRange("groovy", new String[] {"range.groovy"});
+//		range = new ScriptRange("Clojure", new String[] {"range.clojure"});
+//		range = new JaskellRange("jaskell", new String[] {"range.hs"});
+//		range = new SleepRange("sleep", new String[] {"range.pl"});
+//		range = new AbclRange("ABCL", new String[] {"range.lisp"});
+		range = new ScriptRange("jruby", new String[] {"range.rb"});
 	}
 
 	@Test
