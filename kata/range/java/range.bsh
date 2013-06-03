@@ -1,0 +1,57 @@
+class Range {
+	start = 0;
+	end = 0;
+	range = "";
+	len = 0;
+	
+	Range(range) {
+		this.range = range;
+		this.len = range.length();
+		se = range.substring(1, len-1).split(",");
+		start = Integer.valueOf(se[0]) + startIncluded();
+		end = Integer.valueOf(se[1]) - endIncluded();
+	}
+	
+	startIncluded() {
+		range.substring(0,1).equals("(") ? 1 : 0;
+	}
+	endIncluded() {
+		range.substring(len-1,len).equals(")") ? 1 : 0;
+	}
+	
+	start() {
+		start;
+	}
+	end() {
+		end;
+	}
+	int size() {
+		end - start + 1;
+	}
+}
+
+java.lang.Boolean contains(range, point) {
+	r = new Range(range);
+	point >= r.start() && point <= r.end();
+}
+
+int[] allPoints(range) {
+	r = new Range(range);
+	ps = new int[r.size()];
+	for(i = 0; i < r.size(); i++) {
+		ps[i] = i + r.start();
+	}
+    ps;
+}
+
+java.lang.Boolean containsRange(range1, range2) {
+	r1 = new Range(range1);
+	r2 = new Range(range2);
+	r2.start() >= r1.start() && r2.end() <= r1.end();
+}
+
+java.lang.Boolean overlaps(range1, range2) {
+	r1 = new Range(range1);
+	r2 = new Range(range2);
+	r2.start() <= r1.end();
+}

@@ -23,7 +23,7 @@ public class KataRangeTest {
 	@Before
 	public void init() throws ScriptException, YourCodeSucksException, IOException {
 //		range = new JavaRange();
-		range = new ScriptRange("javascript", new String[] {"underscore.js", "range.js"});
+//		range = new ScriptRange("javascript", new String[] {"underscore.js", "range.js"});
 //		range = new ScriptRange("groovy", new String[] {"range.groovy"});
 //		range = new ScriptRange("Clojure", new String[] {"range.clojure"});
 //		range = new JaskellRange("jaskell", new String[] {"range.hs"});
@@ -31,6 +31,7 @@ public class KataRangeTest {
 //		range = new AbclRange("ABCL", new String[] {"range.lisp"});
 //		range = new ScriptRange("jruby", new String[] {"range.rb"});
 //		range = new ScriptRange("jython", new String[] {"range.py"});
+		range = new ScriptRange("java", new String[] {"range.bsh"});
 	}
 
 	@Test
