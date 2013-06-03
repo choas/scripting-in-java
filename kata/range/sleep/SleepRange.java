@@ -5,6 +5,7 @@ import java.io.IOException;
 import javax.script.ScriptException;
 
 import kata.range.Range;
+import kata.range.ScriptRange;
 import sleep.error.YourCodeSucksException;
 import sleep.runtime.Scalar;
 import sleep.runtime.ScriptInstance;
@@ -14,13 +15,13 @@ import sleep.runtime.SleepUtils;
 
 public class SleepRange implements Range {
 
-	private static final String SCRIPT = "src/kata/range/sleep/range.pl";
 	private ScriptVariables variables;
 	private ScriptInstance script;
-	
-	public SleepRange() throws ScriptException, YourCodeSucksException, IOException {
+
+	public SleepRange(String language, String[] scripts)
+			throws ScriptException, YourCodeSucksException, IOException {
 		ScriptLoader loader = new ScriptLoader();
-		script = loader.loadScript(SCRIPT);
+		script = loader.loadScript(ScriptRange.scriptName(language, scripts[0]));
 		variables = script.getScriptVariables();
 	}
 	

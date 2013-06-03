@@ -8,6 +8,7 @@ import javax.script.ScriptException;
 
 import kata.range.abcl.AbclRange;
 import kata.range.groovy.GroovyRange;
+import kata.range.jaskell.JaskellRange;
 import kata.range.java.JavaRange;
 import kata.range.javascript.JavascriptRange;
 import kata.range.sleep.SleepRange;
@@ -27,8 +28,8 @@ public class KataRangeTest {
 		range = new ScriptRange("javascript", new String[] {"underscore.js", "range.js"});
 		range = new ScriptRange("groovy", new String[] {"range.groovy"});
 		range = new ScriptRange("Clojure", new String[] {"range.clojure"});
-		range = new ScriptRange("jaskell", new String[] {"range.hs"});
-		range = new SleepRange();
+		range = new JaskellRange("jaskell", new String[] {"range.hs"});
+		range = new SleepRange("sleep", new String[] {"range.pl"});
 		range = new AbclRange("ABCL", new String[] {"range.lisp"});
 	}
 

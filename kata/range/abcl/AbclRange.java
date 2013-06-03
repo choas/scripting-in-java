@@ -1,35 +1,21 @@
 package kata.range.abcl;
 
-
-import static org.junit.Assert.assertNotNull;
-
 import java.io.FileNotFoundException;
 
 import javax.script.Invocable;
-import javax.script.ScriptEngine;
-import javax.script.ScriptEngineManager;
 import javax.script.ScriptException;
 
-import kata.range.Range;
+import kata.range.ScriptRange;
 
 import org.armedbear.lisp.ComplexVector;
 import org.armedbear.lisp.Symbol;
 
 
-public class AbclRange implements Range {
+public class AbclRange extends ScriptRange {
 
-	private ScriptEngineManager manager;
-	private ScriptEngine engine;
-	private Invocable inv;
-
-	public AbclRange(String language, String[] scripts) throws ScriptException, FileNotFoundException {
-		manager = new ScriptEngineManager();
-		engine = manager.getEngineByName(language);
-		assertNotNull(engine);
-		inv = (Invocable) engine;
-		for(String script : scripts) {
-			engine.eval(new java.io.FileReader("src/kata/range/" + language.toLowerCase() + "/" + script));
-		}
+	public AbclRange(String language, String[] scripts) throws ScriptException,
+			FileNotFoundException {
+		super(language, scripts);
 	}
 	
 	@Override
