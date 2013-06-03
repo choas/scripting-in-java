@@ -1,7 +1,6 @@
 package scripting;
 
 import static org.junit.Assert.*;
-import static org.junit.Assert.assertNotNull;
 
 import javax.script.Invocable;
 import javax.script.ScriptEngine;

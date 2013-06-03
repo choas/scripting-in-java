@@ -7,10 +7,8 @@ import java.io.IOException;
 import javax.script.ScriptException;
 
 import kata.range.abcl.AbclRange;
-import kata.range.groovy.GroovyRange;
 import kata.range.jaskell.JaskellRange;
 import kata.range.java.JavaRange;
-import kata.range.javascript.JavascriptRange;
 import kata.range.sleep.SleepRange;
 
 import org.junit.Before;
@@ -25,14 +23,14 @@ public class KataRangeTest {
 	@Before
 	public void init() throws ScriptException, YourCodeSucksException, IOException {
 //		range = new JavaRange();
-//		range = new ScriptRange("javascript", new String[] {"underscore.js", "range.js"});
+		range = new ScriptRange("javascript", new String[] {"underscore.js", "range.js"});
 //		range = new ScriptRange("groovy", new String[] {"range.groovy"});
 //		range = new ScriptRange("Clojure", new String[] {"range.clojure"});
 //		range = new JaskellRange("jaskell", new String[] {"range.hs"});
 //		range = new SleepRange("sleep", new String[] {"range.pl"});
 //		range = new AbclRange("ABCL", new String[] {"range.lisp"});
 //		range = new ScriptRange("jruby", new String[] {"range.rb"});
-		range = new ScriptRange("jython", new String[] {"range.py"});
+//		range = new ScriptRange("jython", new String[] {"range.py"});
 	}
 
 	@Test
