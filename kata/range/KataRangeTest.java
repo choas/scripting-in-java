@@ -6,6 +6,7 @@ import java.io.IOException;
 
 import javax.script.ScriptException;
 
+import kata.range.abcl.AbclRange;
 import kata.range.groovy.GroovyRange;
 import kata.range.java.JavaRange;
 import kata.range.javascript.JavascriptRange;
@@ -23,13 +24,12 @@ public class KataRangeTest {
 	@Before
 	public void init() throws ScriptException, YourCodeSucksException, IOException {
 		range = new JavaRange();
-//		range = new JavascriptRange();
-//		range = new GroovyRange();
 		range = new ScriptRange("javascript", new String[] {"underscore.js", "range.js"});
 		range = new ScriptRange("groovy", new String[] {"range.groovy"});
 		range = new ScriptRange("Clojure", new String[] {"range.clojure"});
 		range = new ScriptRange("jaskell", new String[] {"range.hs"});
 		range = new SleepRange();
+		range = new AbclRange("ABCL", new String[] {"range.lisp"});
 	}
 
 	@Test
